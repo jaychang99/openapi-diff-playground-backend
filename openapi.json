@@ -107,6 +107,31 @@
           }
         }
       }
+    },
+    "/users": {
+      "get": {
+        "operationId": "UsersController_findAll",
+        "summary": "Get all users",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Users Api"
+        ]
+      }
     }
   },
   "info": {
@@ -154,6 +179,31 @@
         "required": [
           "name",
           "age"
+        ]
+      },
+      "UserDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "User ID",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "User name",
+            "example": "John Doe"
+          },
+          "email": {
+            "type": "string",
+            "description": "User email",
+            "example": "johndoe@email.com"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "email"
         ]
       }
     }
