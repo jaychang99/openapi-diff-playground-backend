@@ -1,0 +1,42 @@
+name: Openapi Diff
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  openapi-diff:
+    name: Openapi Diffing Tool
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      repository-projects: write
+
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4
+
+      - name: Get Openapi Diff
+        id: openapi-diff
+        uses: jaychang99/github-actions-openapi-diff@v0.0.1-alpha
+
+      - name: Post comment on PR
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+
+          body: |
+            ${{ steps.openapi-diff.outputs.result }}
+
+      - name: Print Output
+        id: output
+        run: echo "${{ steps.test-action.outputs.time }}"
