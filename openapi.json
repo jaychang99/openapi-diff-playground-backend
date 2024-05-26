@@ -141,7 +141,20 @@
       },
       "UpdateCatDto": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the cat"
+          },
+          "age": {
+            "type": "number",
+            "description": "The age of the cat"
+          }
+        },
+        "required": [
+          "name",
+          "age"
+        ]
       }
     }
   }
